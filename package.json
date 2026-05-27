@@ -1,6 +1,6 @@
 {
   "name": "rovas",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Hungarian rovásírás (Old Hungarian runic script) transliteration library",
   "keywords": [
     "hungarian",
