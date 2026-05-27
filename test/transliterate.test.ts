@@ -104,12 +104,22 @@ describe('transliterate — Hungarian words', () => {
 
   /**
    * "egészség" — health
-   * Contains sz, gy digraphs
+   * e-g-é-sz-s-é-g: contains sz digraph, no gy
    */
-  it('"egészség" contains sz and gy tokens', () => {
+  it('"egészség" contains sz token (no gy in this word)', () => {
     const { tokens } = transliterate('egészség')
     const latinKeys = tokens.map(t => t.latin)
     expect(latinKeys).toContain('sz')
+    expect(latinKeys).not.toContain('gy')
+  })
+
+  /**
+   * "egység" — unity
+   * e-gy-s-é-g: contains gy digraph
+   */
+  it('"egység" contains gy token', () => {
+    const { tokens } = transliterate('egység')
+    const latinKeys = tokens.map(t => t.latin)
     expect(latinKeys).toContain('gy')
   })
 })
