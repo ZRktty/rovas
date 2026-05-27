@@ -1,3 +1,10 @@
+## [0.2.1](https://github.com/ZRktty/rovas/compare/v0.2.0...v0.2.1) (2026-05-27)
+
+
+### Bug Fixes
+
+* disable semantic-release github issue comments to avoid notes push ([45e0f6d](https://github.com/ZRktty/rovas/commit/45e0f6d276ef308e92ab23c0356beeecdf85888c))
+
 # [0.2.0](https://github.com/ZRktty/rovas/compare/v0.1.0...v0.2.0) (2026-05-27)
 
 
