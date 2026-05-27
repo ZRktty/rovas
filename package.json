@@ -55,15 +55,6 @@
     "typescript": "^6.0.3",
     "vitest": "^4.1.7"
   },
-  "keywords": [
-    "rovásírás",
-    "rovas",
-    "hungarian",
-    "runic",
-    "old-hungarian",
-    "unicode",
-    "transliteration"
-  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/ZRktty/rovas"
