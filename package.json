@@ -58,7 +58,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/ZRktty/rovas"
+    "url": "git+https://github.com/ZRktty/rovas.git"
   },
   "homepage": "https://github.com/ZRktty/rovas#readme",
   "bugs": {
