@@ -45,11 +45,11 @@ export const VOWELS: Record<string, string> = {
 
 export const CONSONANTS: Record<string, string> = {
   // 3-letter digraph
-  dzs: '\u{10CC7}\u{10CCF}', // D+ZS ligature composition (D=𐳇, ZS=𐳰) — no single codepoint
+  dzs: '\u{10CC7}\u{10CF0}', // D+ZS ligature composition (D=𐳇, ZS=𐳰) — no single codepoint
 
   // 2-letter digraphs
   cs:  '\u{10CC6}', // 𐳆 OLD HUNGARIAN SMALL LETTER ECS
-  dz:  '\u{10CC7}\u{10CCF}', // D+Z composition; 𐳇+𐳯
+  dz:  '\u{10CC7}\u{10CEF}', // D+Z composition; 𐳇+𐳯
   gy:  '\u{10CCE}', // 𐳎 OLD HUNGARIAN SMALL LETTER EGY
   ly:  '\u{10CD7}', // 𐳗 OLD HUNGARIAN SMALL LETTER ELY
   ny:  '\u{10CDA}', // 𐳚 OLD HUNGARIAN SMALL LETTER ENY
