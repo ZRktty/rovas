@@ -56,6 +56,19 @@ transliterate('Győr').rovas         // 𐳎𐳟𐳢
 transliterate('Nyíregyháza').rovas  // 𐳚𐳑𐳢𐳉𐳎𐳇𐳁𐳯𐳀
 ```
 
+### Gyors API — `toRovas` / `toLatin`
+
+```ts
+import { toRovas, toLatin } from 'rovas'
+
+toRovas('magyar')          // → '𐳞𐳀𐳎𐳀𐳢'  (string)
+toRovas('szép', { longVowels: 'classical' }) // opciókkal is
+
+toLatin(toRovas('szép'))   // → 'szép'
+```
+
+> A `toRovas` a `transliterate(...).rovas` rövidítése, a `toLatin` a `reverse` alias neve. A teljes `TransliterateResult` objektumhoz (tokenek, stb.) használd a `transliterate()` függvényt.
+
 ### Visszafordítás (rovás → latin)
 
 ```ts

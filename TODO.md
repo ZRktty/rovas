@@ -4,47 +4,19 @@ Paste this into Claude Code. Work top-to-bottom. Each task is self-contained.
 
 ---
 
-## 1. Fix failing tests
+## ~~1. Fix failing tests~~ ✅
 
-Five tests currently fail. Fix the source, not the tests — the tests are correct.
+### ~~1a.~~ ✅ `cs` codepoint collision with `b` — verified, no collision (`cs`=U+10CC6, `b`=U+10CC2)
 
-### 1a. `cs` codepoint collision with `b`
+### ~~1b.~~ ✅ `dz` / `dzs` reverse map broken — fixed in `src/alphabet.ts` (were both using U+10CCF/H)
 
-In `src/alphabet.ts`, `cs` and `b` were both mapped to `U+10CC2` (EB).
-The fix (`cs` → `U+10CC6` ECS) is already applied but verify the reverse map
-in `src/reverse.ts` correctly resolves `U+10CC6` → `'cs'` and `U+10CC2` → `'b'`.
-
-Run: `pnpm test -- --reporter=verbose test/reverse.test.ts`
-
-### 1b. `dz` / `dzs` reverse map broken
-
-`dz` is composed of D (`U+10CC7`) + Z (`U+10CEF`).
-`dzs` is composed of D (`U+10CC7`) + ZS (`U+10CF0`).
-
-In `src/reverse.ts`, the constants `DZ_ROVAS` and `DZS_ROVAS` use wrong codepoints.
-Fix them to match the exact codepoints used in `src/alphabet.ts` CONSONANTS map.
-
-### 1c. Wrong test expectation: `egészség` does not contain `gy`
-
-In `test/transliterate.test.ts`, the test asserting `"egészség"` contains `gy` is wrong —
-the word is `e-g-é-sz-s-é-g`, no `gy`. Fix the test to assert `sz` only, or replace
-the example word with one that actually contains `gy` (e.g. `"egység"` = unity).
+### ~~1c.~~ ✅ Wrong test expectation: `egészség` — replaced with `sz`-only assert + added `egység` test
 
 ---
 
-## 2. Add `toRovas` / `toLatin` short aliases
+## ~~2. Add `toRovas` / `toLatin` short aliases~~ ✅
 
-In `src/index.ts`, add:
-
-```ts
-export const toRovas = (input: string, options?: TransliterateOptions) =>
-  transliterate(input, options).rovas
-
-export const toLatin = reverse
-```
-
-These are the ergonomic one-liner API that most users will reach for.
-Keep `transliterate` and `reverse` exported too — they return richer types.
+Added to `src/index.ts`. README updated with usage examples.
 
 ---
 
