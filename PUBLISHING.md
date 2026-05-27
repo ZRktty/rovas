@@ -1,23 +1,61 @@
-# Steps to Publish Your NPM Package
+# Publishing rovas
 
-## Prerequisites
+## Normal flow — automated via CI
 
-1. **Create an npm account** at https://www.npmjs.com/signup
-2. **Install Node.js and npm** (if not already installed)
+Publishing is handled automatically. When a PR is merged to `main`, the GitHub
+Actions `release` job runs semantic-release, which:
 
-## Publishing Steps
+1. Analyses commit messages since the last release.
+2. Bumps the version in `package.json` and updates `CHANGELOG.md`.
+3. Creates a git tag and a GitHub Release.
+4. Publishes the package to npm via **Trusted Publishing** (OIDC — no stored token needed).
 
-### Step 1: Prepare Your Package
+Commit message conventions that trigger a release:
 
-Make sure you have these essential files:
-- ✅ `package.json` - Package configuration
-- ✅ `index.js` - Main entry point
-- ✅ `README.md` - Documentation
-- ✅ `LICENSE` - License file
-- ✅ `.gitignore` - Git ignore rules
-- ✅ `.npmignore` - NPM ignore rules (optional)
+| Prefix | Release type |
+| --- | --- |
+| `fix:` / `fix(scope):` | patch (`0.0.x`) |
+| `feat:` / `feat(scope):` | minor (`0.x.0`) |
+| `BREAKING CHANGE:` footer | major (`x.0.0`) |
 
-### Step 2: Update package.json
+## Manual publishing (emergency only)
+
+The CI workflow is the authorised release path. Only publish manually if CI is broken.
+
+```bash
+# 1. Install dependencies
+pnpm install
+
+# 2. Run the full test suite
+pnpm test
+
+# 3. Build the dist/ artefacts (ESM + CJS + TypeScript declarations)
+pnpm build
+
+# 4. Dry-run to confirm what will be included
+npm publish --dry-run
+
+# 5. Publish (requires npm authentication with write access to rovas)
+pnpm publish
+```
+
+### What gets published
+
+The `"files"` field in `package.json` limits the tarball to `dist/`:
+
+| Path | Description |
+| --- | --- |
+| `dist/index.js` | ESM build |
+| `dist/index.cjs` | CommonJS build |
+| `dist/index.d.ts` | TypeScript declarations (ESM) |
+| `dist/index.d.cts` | TypeScript declarations (CJS) |
+
+## Resources
+
+- [npm Trusted Publishing](https://docs.npmjs.com/trusted-publishers)
+- [semantic-release](https://semantic-release.gitbook.io/)
+- [Conventional Commits](https://www.conventionalcommits.org/)
+
 
 Update the following fields in `package.json`:
 
